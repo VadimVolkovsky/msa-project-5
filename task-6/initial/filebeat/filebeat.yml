@@ -1,0 +1,25 @@
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /usr/share/dockerlogs/data/*/*.log
+
+    json.keys_under_root: true
+    json.add_error_key: true
+    json.message_key: log
+
+    processors:
+      - decode_json_fields:
+          fields: ["log"]
+          target: ""
+          overwrite_keys: true
+          add_error_key: true
+
+      - drop_fields:
+          fields: ["log", "stream"]
+
+output.logstash:
+  hosts: ["logstash:5044"]
+
+setup.kibana:
+  host: "http://kibana:5601"
