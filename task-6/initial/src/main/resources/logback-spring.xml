@@ -9,10 +9,14 @@
                     <pattern>
                         <pattern>
                             {
-                            "trace": "%X{traceId:-}",
-                            "span": "%X{spanId:-}",
-                            "parent": "%X{parentId:-}",
-                            "exportable": "%X{sampled:-}",
+                            "traceId": "%X{traceId:-}",
+                            "spanId": "%X{spanId:-}",
+                            "parentId": "%X{parentId:-}",
+                            "sampled": "%X{sampled:-}",
+                            "http": {
+                            "method": "%X{method:-}",
+                            "uri": "%X{uri:-}"
+                            },
                             "pid": "${PID:-}"
                             }
                         </pattern>
